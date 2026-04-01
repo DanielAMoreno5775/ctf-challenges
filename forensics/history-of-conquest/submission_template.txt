@@ -1,0 +1,26 @@
+Challenge Name: History of Conquest
+
+Intended Category: Grab Bag
+
+Credit To: Daniel Moreno
+
+Description: 
+Pensacola has been conquered quite a few times in its history before settling in US hands. If we include prehistory, that's 7 periods of ownership by my count. Could you help me follow them?
+
+Hints:
+* Sometimes walking around or through the bin is a good way to start.
+
+Solution:
+1. Execute `binwalk Bottle-Creek-Diagram.jpg` to see that there is a zip archive in the file
+2. Execute `binwalk -e Bottle-Creek-Diagram.jpg` to extract the zip archive which yields 18E78.zip
+3. Most times, binwalk will also unzip the file. If not, execute `unzip 205E5.zip` (or whatever the zip file is called)
+4. Execute `xxd -r -p french_period.hex > second_spanish_period` which yields second_spanish_period
+    * The file is called french_period.hex so tells you which tool to use
+5. Open `second_spanish_period` and realize that it is base64-encoded based on the character set
+6. Execute `base64 -d second_spanish_period > british_west_florida` which yields british_west_florida
+7. Execute `file british_west_florida` to determine that it is a tar file
+8. Execute `tar -xf british_west_florida` which yields third_spanish_period.png.gz
+9. Execute `gunzip third_spanish_period.png.gz` which yields third_spanish_period.png (a US flag since that is the next period)
+10. Execute `strings third_spanish_period.png` to get the flag
+
+Flag: `PCA{w0w_p3n54c014_ch4n93d_h4nd5_4107}`

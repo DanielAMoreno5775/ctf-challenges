@@ -12,4 +12,4 @@
 
 # Flag
 * Type: `static`
-* Value: `CTF{D1d_y0u_3nj0y_my_D1p}`
+* Value: `PCA{w0w_p3n54c014_ch4n93d_h4nd5_4107}`
