@@ -226,9 +226,9 @@ string decryptGame7_9(const vector<uint8_t>& key, const vector<uint8_t>& invKey,
 void printOracleHeaderGame1_3() {
     cout << "\n";
     cout << "===========================================\n";
-    cout << "           ORACLE CONSULTATION             \n";
+    cout << "              GUIDING LIGHT                \n";
     cout << "===========================================\n";
-    cout << "The oracle uses the following encryption scheme:\n";
+    cout << "The lighthouse uses the following encryption scheme:\n";
     cout << "  Break M into 8-bit blocks: M_1 ||...|| M_n.\n";
     cout << "  IV ⬅^$ {0,1}^8\n";
     cout << "  For i=1,...,n do\n";
@@ -241,9 +241,9 @@ void printOracleHeaderGame1_3() {
 void printOracleHeaderGame4_6() {
     cout << "\n";
     cout << "===========================================\n";
-    cout << "           ORACLE CONSULTATION             \n";
+    cout << "              GUIDING LIGHT                \n";
     cout << "===========================================\n";
-    cout << "The oracle uses the following encryption scheme where message length is multiple of m (8):\n";
+    cout << "The lighthouse uses the following encryption scheme where message length is multiple of m (8):\n";
     cout << "  Break M into 8-bit blocks: M_1 ||...|| M_n.\n";
     cout << "  IV ⬅^$ {0,1,...,2^m-1}\n";
     cout << "  For i=1,...,n do\n";
@@ -256,9 +256,9 @@ void printOracleHeaderGame4_6() {
 void printEncryptionOracleHeaderGame7_9() {
     cout << "\n";
     cout << "===========================================\n";
-    cout << "           ORACLE CONSULTATION             \n";
+    cout << "              GUIDING LIGHT                \n";
     cout << "===========================================\n";
-    cout << "The oracle uses the following encryption scheme:\n";
+    cout << "The lighthouse uses the following encryption scheme:\n";
     cout << "  Break M into 8-bit blocks: M_1 ||...|| M_n.\n";
     cout << "  IV ⬅^$ {0,1}^8\n";
     cout << "  C_1 ⬅ E_K(IV)\n";
@@ -271,9 +271,9 @@ void printEncryptionOracleHeaderGame7_9() {
 void printDecryptionOracleHeaderGame7_9() {
     cout << "\n";
     cout << "===========================================\n";
-    cout << "           ORACLE CONSULTATION             \n";
+    cout << "              GUIDING LIGHT                \n";
     cout << "===========================================\n";
-    cout << "The oracle uses the following decryption scheme:\n";
+    cout << "The lighthouse uses the following decryption scheme:\n";
     cout << "  Break C into 8-bit blocks: C_0 || C_1 ||...|| C_{n+1}.\n";
     cout << "  For i=1,...,n do\n";
     cout << "    M_i ⬅ E_K^{-1}(C_{i+1}) ⨁ C_i\n";
@@ -283,7 +283,7 @@ void printDecryptionOracleHeaderGame7_9() {
     cout << "  If IV' == C_0, return M\n";
     cout << "  Else, return an error\n";
     cout << "Message must be non-empty strings of bits (e.g. \"0\", \"0101\").\n";
-    cout << "Message cannot have been returned from the previous encryption oracle.\n\n";
+    cout << "Message cannot have been returned by the previous lighthouse.\n\n";
 }
 
 
@@ -296,25 +296,25 @@ void runDecryptionOracleInteraction(const vector<uint8_t>& key, const vector<uin
         string ct = readBitString("Enter ciphertext (bit string): ");
         if (ct.empty()) {
             cout << "  [!] Invalid input. Must be a non-empty string of 0s and 1s.\n";
-            cout << "  [!] The oracle will consult again.\n";
+            cout << "  [!] The lighthouse will allow you to communicate again.\n";
             continue;
         }
 
         if (ct.size() % 8 != 0) {
             cout << "  [!] Ciphertext length must be a multiple of 8 bits.\n";
-            cout << "  [!] The oracle will consult again.\n";
+            cout << "  [!] The lighthouse will allow you to communicate again.\n";
             continue;
         }
 
         // Reject anything the encryption oracle returned this game
         if (ct == forbiddenCt) {
-            cout << "  [!] That ciphertext was returned by the encryption oracle.\n";
-            cout << "  [!] The oracle will consult again.\n";
+            cout << "  [!] That ciphertext was returned by the lighthouse.\n";
+            cout << "  [!] The lighthouse will allow you to communicate again.\n";
             continue;
         }
 
         string result = decryptGame7_9(key, invKey, ct);
-        cout << "\nThe decryption oracle responds: " << result << "\n\n";
+        cout << "\nThe lighthouse responds: " << result << "\n\n";
         return;
     }
 }
@@ -335,22 +335,22 @@ void runOracleInteraction(int game, int world, const vector<uint8_t>& key, const
         // Will be empty if string was invalid
         if (m0.empty()) {
             cout << "  [!] Invalid input. Must be a non-empty string of 0s and 1s.\n";
-            cout << "  [!] The oracle will consult again.\n";
+            cout << "  [!] The lighthouse will allow you to communicate again.\n";
             continue;
         }
 
         string m1 = readBitString("Enter message 1 (bit string): ");
         if (m1.empty()) {
             cout << "  [!] Invalid input. Must be a non-empty string of 0s and 1s.\n";
-            cout << "  [!] The oracle will consult again.\n";
+            cout << "  [!] The lighthouse will allow you to communicate again.\n";
             continue;
         }
         
         // These games need messages to be multiples of 8 bits in length
         if (game > 3 && game <= 6) {
             if (m0.size() % 8 != 0 || m1.size() % 8 != 0) {
-                cout << "  [!] For this oracle, message length for both must be a multiple of 8 bits.\n";
-                cout << "  [!] The oracle will consult again.\n";
+                cout << "  [!] For this lighthouse communique, message length for both must be a multiple of 8 bits.\n";
+                cout << "  [!] The lighthouse will allow you to communicate again.\n";
                 continue;
             }
         }
@@ -358,14 +358,14 @@ void runOracleInteraction(int game, int world, const vector<uint8_t>& key, const
         // Use world to select a message
         const string& chosen = (world == 0) ? m0 : m1;
         if (game <= 3) {
-            cout << "\nThe oracle responds: " << encryptGame1_3(key, chosen) << "\n\n";
+            cout << "\nThe lighthouse keeper responds: " << encryptGame1_3(key, chosen) << "\n\n";
         }
         if (game > 3 && game <= 6) {
-            cout << "\nThe new oracle responds: " << encryptGame4_6(key, chosen) << "\n\n";
+            cout << "\nA new lighthouse keeper responds: " << encryptGame4_6(key, chosen) << "\n\n";
         }
         if (game > 6 && game <= 9) {
             string ct = encryptGame7_9(key, chosen);
-            cout << "\nThe newest oracle responds: " << ct << "\n\n";
+            cout << "\nThe latest lighthouse keeper responds: " << ct << "\n\n";
             runDecryptionOracleInteraction(key, invKey, ct);
         }
         return;
@@ -386,17 +386,18 @@ int main() {
     }
 
     cout << "==============================================\n";
-    cout << "          ORACLE OF DELPHI CHALLENGE          \n";
+    cout << "           The Lighthouse Challenge           \n";
     cout << "==============================================\n";
     cout << "You will play " << NUM_GAMES << " games.\n";
     cout << "In each game, a secret world (0 or 1) is chosen at random.\n";
-    cout << "You will consult the oracle each game.\n";
-    cout << "Each time, give the oracle two bit-string messages.\n";
+    cout << "Each game, the lighthouse will guide you, providing the algorithm.\n";
+    cout << "Each time, send the lighthouse keeper two bit-string messages.\n";
     cout << "Messages are treated as binary numbers (\"0101\" = 5).\n";
-    cout << "The oracle encrypts the message whose number matches the secret world.\n";
-    cout << "Games 7-9 also offer a decryption oracle, so long as the ciphertext was not returned by the previous oracle.\n";
-    cout << "Finally, guess which world was chosen.\n";
+    cout << "The lighthouse encrypts the message whose number matches the secret world.\n";
+    cout << "In Games 7-9, the lighthouse will also decrypt a message, so long as the ciphertext was not returned by the previous lighthouse communication.\n";
+    cout << "Finally, guess which world was chosen so that you may safely arrive at port.\n";
     cout << "A single wrong guess ends the game immediately.\n";
+    cout << "After all, navigation in such waters is no laughing matter.\n";
     cout << "Win all " << NUM_GAMES << " games to reveal the hidden string.\n";
     cout << "Disclaimer: It is possible to bypass this logic.\n";
     cout << "However, it is far harder than solving the challenge as intended.\n";
@@ -432,7 +433,7 @@ int main() {
         }
     }
 
-    const string SECRET = "CTF{cryp70_d3f1n1710n5_0f_53cur17y}";
+    const string SECRET = "PCA{cryp70_d3f1n1710n5_0f_53cur17y}";
     cout << "\n===========================================\n";
     cout << "  PERFECT SCORE: " << NUM_GAMES << " / " << NUM_GAMES << "\n";
     cout << "===========================================\n";

@@ -1,0 +1,36 @@
+Challenge Name: The Lighthouse
+
+Intended Category: Crypto
+
+Credit To: Daniel Moreno
+
+Description: 
+Run this game on Linux, and speak with the lighthouse to safely reach the port.
+
+Each round, your ship will need to turn to Bearing 0 or Bearing 1. In the first 6 rounds, the lighthouse will ask for two messages and will select either Message 0 for Bearing 0 or Message 1 for Bearing 1. The selected message will be encrypted using the algorithm provided by the lighthouse's beacon. In Games 7 through 9, the lighthouse will also ask you to send a ciphertext, so long as the ciphertext was not returned by the lighthouse.
+
+Can you crack the code 100% of the time and safely reach port?
+
+Hints:
+* How is "security" defined for cryptography? Do any of those definitions mention oracles?
+
+Solution:
+1. Games 1-3
+    a. Enter `0000000000000000` as Message 0 and `0000000011111111` as Message 1
+    b. Split the response into 3 8-bit chunks like `10000000 00110001 10000101`
+    c. If the second and third chunks are equal, then guess Bearing 0.
+    d. Otherwise, guess Bearing 1.
+2. Games 4-6
+    a. Enter `0000000000000000` as Message 0 and `0000000011111111` as Message 1
+    b. Split the response into 3 8-bit chunks like `10000000 00110001 10000101`
+    c. If the second and third chunks are equal, then guess Bearing 0.
+    d. Otherwise, guess Bearing 1.
+3. Games 7-9
+    a. Enter `0000000000000000` as Message 0 and `1111111111111111` as Message 1
+    b. Split the response into 4 8-bit chunks like `00001011 00110100 10010000 11111111`.
+    c. Enter `000010110011010010010000` as Ciphertext, only using the first 3 chunks
+    d. If the returned message is all 0s, then guess Bearing 0.
+    e. Otherwise, guess Bearing 1.
+4. Don't reuse any of my example responses/ciphertexts since the key rotates every time the program executes.
+
+Flag: `PCA{cryp70_d3f1n1710n5_0f_53cur17y}`

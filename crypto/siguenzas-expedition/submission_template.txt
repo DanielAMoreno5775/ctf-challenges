@@ -1,0 +1,26 @@
+Challenge Name: Siguenza's Expedition
+
+Intended Category: Crypto
+
+Credit To: Daniel Moreno
+
+Description: 
+You're trying to access an old account of yours for a Flash game called Siguenza's Expedition. Rather similar to the old Oregon Trail game if you remember correctly, lot less dysentery though. Unfortunately, you no longer have access to the email you used so you can't get the confirmation codes. Thankfully, you know something about the game's development. They used the same algorithm as JavaScript's `Math.random()`, but they rolled their own.
+
+You've requested three password resets for another account and email that you can access. As such, you've gotten 3 sequential confirmation codes: 2725572247253476556, 15591863164500473095, and 55102595811394477. Can you obtain the 2 states used so that you can predict the future confirmation codes? Then, it wouldn't be any trouble to determine the confirmation code for your old account.
+
+Submit the flag as `PCA{seed1_seed2}` with the seeds being all lowercase. Don't include any prefixes that are used to denote numeric base.
+
+Hints:
+* JavaScript's Math.random() function uses the Xorshift128+ algorithm.
+
+Solution:
+1. Look up JavaScript's Math.random() function to determine that it uses Xorshift128+
+2. Look up ways to invert Math.random() and Xorshift128+ which will take you to a tutorial like [this](https://www.youtube.com/watch?v=XDsYPXRCXAs) or [this](https://littlemaninmyhead.wordpress.com/2025/08/31/inverting-the-xorshift128-random-number-generator/)
+3. Use those tutorials to find a tool like [this xorshift128+ inverter](https://github.com/ScottContini/a_better_xorshift128-inverter)
+4. See that these tools only take hex values
+5. Convert 2725572247253476556 -> 0x25d32d84a734e4cc, 15591863164500473095 -> 0xd8616cf05a8c7507, 55102595811394477 -> 0xc3c384d98a43ad
+6. Pass the hex values to the inverter tools in a command like `./better_inverter.out 0x25d32d84a734e4cc 0xd8616cf05a8c7507 0xc3c384d98a43ad`
+7. The tool should return the two derived seeds `0xfeedfacecafebeef 0xdeadfa1169360463`
+
+Flag: `PCA{feedfacecafebeef_deadfa1169360463}`
