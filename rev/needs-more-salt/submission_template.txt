@@ -1,0 +1,30 @@
+Challenge Name: Needs More Salt
+
+Intended Category: Grab Bag
+
+Credit To: Daniel Moreno
+
+Description: 
+As an auditor, you've been called in by a company to ensure that they are satisfying their compliance needs. The company sells peaches, blueberries, and tangerines with most of their traffic coming from Florida.
+
+For the most part, everything looks good. However, they've been tracking user journeys on their website. For legal reasons, they aren't allowed to store IPv4 addresses in a reversible manner, but they need to be able to track each IPv4 address across pages. As such, they've come up with a program to anonymize IPv4 addresses. Demonstrate that it is insufficient to render the addresses irreversible.
+
+Submit the most common IP address within the provided logs as `PCA{000.000.000.000}`
+
+Hints:
+* Here's a list of IPv4 address blocks in Florida: https://networksdb.io/ip-addresses-of/state-of-florida
+* Can you predict how salts are generated?
+
+Solution:
+1. Decompile hash_algorithm.pyc with decompyle++ or [PyLingual](https://pylingual.io/)
+2. Realize that the CSV gives you the date for each entry
+3. Calculate the seed for each day
+4. Determine the correct salt for each day
+5. Check a website like [this](https://networksdb.io/ip-addresses-of/state-of-florida) to see the list of IP ranges in Florida
+    - This is technically unnecessary since there are only 4.2 billion possible IPv4 addresses.
+6. Use that information to construct a small wordlist
+7. Crack all of the hashes using hashcat (hash mode 17400) or a Python program for each day
+8. After identifying one day, the player may notice that all of the IP addresses come from the same block (160.130.0.0/16), allowing them to further shrink the wordlist
+9. Count how many times each IP address appears in the logs
+
+Flag: `PCA{160.130.5.238}`
