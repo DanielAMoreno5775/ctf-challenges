@@ -1,0 +1,18 @@
+Challenge Name: King's Code
+
+Intended Category: Crypto
+
+Credit To: Daniel Moreno
+
+Description: 
+An archeologist recently recovered an emergency communique from Don Tristan de Luna y Arellano to King Philip II of Spain. We're not sure what he was trying to communicate, though it was an emergency so he probably didn't bother with nulls. Perhaps you could help us? Assume that everything except `PCA` is all lowercase.
+
+Hints:
+* In 1556, did Philip II use any particular ciphers that could use nulls?
+
+Solution:
+1. Look up ciphers used during the reign of King Philip II
+2. Find a website like [this](https://cryptiana.web.fc2.com/code/spanish3.htm)
+3. Use the provided cipher alphabet to obtain the flag
+
+Flag: `PCA{sixshipslostcolonybad}`

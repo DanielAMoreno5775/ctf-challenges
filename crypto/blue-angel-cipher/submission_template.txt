@@ -1,0 +1,19 @@
+Challenge Name: Blue Angel Cipher
+
+Intended Category: Crypto
+
+Credit To: Daniel Moreno
+
+Description: 
+The Blue Angels are known for their skillful flying. However, I'm sure that someone's hidden a covert message amongst their flights.
+
+Hints:
+* QR codes are just binary data. Binary can be anything.
+
+Solution:
+1. Skim through the parts of the video where they are flying.
+2. Find the QR code (which is up around the 0:50 mark) and take a screenshot of it.
+3. Paste that screenshot in Google Lens to extract the text.
+4. Convert the phonetic alphabet into the flag.
+
+Flag: `PCA{1_h34r_qr_c0d3s_ar3_ju57_b1n42y}`
