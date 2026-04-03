@@ -1,11 +1,11 @@
-Challenge Name: Salty Keys and Broken Seas
+Challenge Name: Salty Keys
 
 Intended Category: Crypto
 
 Credit To: Daniel Moreno
 
 Description: 
-TODO
+Two bottles recently washed up on the shores of the Perdido Key. After carefully removing the pieces of paper within, all we saw were a bunch of numbers. Could you help us figure out what nefarious message was being sent?
 
 (65537, 9942232993210737538861363243874689476879698388858855417902403334387083583421654524912019357945272551090446507296406241448696021524179092090663396886245291)
 1264067980613363058120160119758205831209358818150091379665287361835211705143548680309418545268453028770620522024778205861917502542643046272414067094246478
@@ -14,11 +14,11 @@ TODO
 2284588855011422660516563181768548979969512407348977085200865118018361591109736258584682150496827939944071694744857869730759720137521725380743169240106345
 
 Hints:
-* a
+* Are the keys similar in some way? Could you use that to break the ciphertext?
 
 Solution:
 1. Realize that a crypto challenge involving big numbers normally is normally a RSA challenge
 2. Realize that both use the same modulus
-3. TODO (add link to this repo)
+3. Plug the values into a program like [this](https://github.com/DanielAMoreno5775/ctf-challenges/blob/main/crypto/salty-keys-and-broken-seas/common_modulus.py) to extract the flag
 
 Flag: `PCA{k3y_r3us3_1s_84d}`
