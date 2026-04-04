@@ -1,0 +1,28 @@
+Challenge Name: Bottle on the Beach
+
+Intended Category: OSINT
+
+Credit To: Daniel Moreno
+
+Description: 
+Recently, I was walking Pensacola's beaches and found this beer bottle. Could you help me find where and when it was made? 
+
+Submit the flag with the following format: PCA{NumberOfNearestHighway_City_Country_YYYY_MM_DD}.
+
+Hints:
+* Sol Cerveza is owned and made by Molson Coors. Do they offer any help in reading the batch code?
+* Cuauhtémoc Moctezuma Brewery operates the plants that manufacture Sol Cerveza.
+
+Solution:
+1. Look at the image to determine the brand
+2. Look up Sol's batch codes for primary packaging, which leads to [this](https://www.molsoncoors.com/sites/molsonco/files/How%20to%20Read%20Code%20Dates_vFinal%20%281%29_0.pdf)
+3. Determine that the numbers in the image are L6094484EA1204 and BBD AUG 2026
+4. Since the document says that best-before dates are always within 9-26 weeks of production, we can assume that the year refers to 2026
+5. Using that information, set the date as 26094
+6. Convert that date from Julian date format to obtain the production date
+7. Use the document to map the brewery code to a specific city
+8. Next, figure out what company operates the brewery. This can easily be done via [Wikipedia](https://en.wikipedia.org/wiki/Cuauht%C3%A9moc_Moctezuma_Brewery), [Tavern Trove](https://www.taverntrove.com/moctezuma-brewery-of-orizaba-veracruz-mexico-br-5762.html), or plenty of other websites
+9. With that name, go to Google and open up the site in Google Maps
+10. Scroll out and see that the factory is one intersection away from Mexican Federal Highway 150
+
+Flag: `PCA{150_Orizaba_Mexico_2026_04_04}`
