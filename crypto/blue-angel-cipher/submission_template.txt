@@ -5,7 +5,7 @@ Intended Category: Crypto
 Credit To: Daniel Moreno
 
 Description: 
-The Blue Angels are known for their skillful flying. However, I'm sure that someone's hidden a covert message amongst their flights.
+The Blue Angels are known for their skillful flying. However, I'm sure that someone's hidden a covert message amongst this video of their flights.
 
 Hints:
 * QR codes are just binary data. Binary can be anything.

@@ -1,0 +1,36 @@
+Challenge Name: L33t H4x0rs
+
+Intended Category: Grab Bag
+
+Credit To: Daniel Moreno
+
+Description: 
+Pensacola's National Naval Aviation Museum has quite the selection of cryptographic devices. Some pranksters recently painted a bunch of graffiti on the building's side, no doubt making fun of us.
+
+We've provided you with a copy of their foul graffiti. Show them that their simplistic obfuscation won't overcome us!
+
+Hints:
+* Are there any esolangs with this character set? Are any of their names "foul"?
+
+Solution:
+1. Open the challenge file to view the ASCII text, despite the lack of file extension
+2. Recognize this as the esolang JSFuck based on the character set
+3. Put the text in a decoder like [this](https://www.53lu.com/tool/jsfuckdecode/)
+4. Create a program like the following to decode the flag by simply reversing the math in the now-decoded code
+```
+const secret = [
+       27, 21, 108,  47, 104, 38, 106,  64,
+       16, 48,  61, 111,  20, 70, 117,  77,
+      116, 25, 140,  76, 122, 59, 144, 119,
+      126, 33,  64, 129, 102, 75
+    ];
+const key = 0x55;
+let flag = "";
+for (let i = 0; i < secret.length; i++) {
+    let charCode = ((secret[i] - i) ^ 0x55) + 2;
+    flag += String.fromCharCode(charCode);
+}
+console.log("Recovered Flag:", flag);
+```
+
+Flag: `PCA{3v3n_th3_n4m3_1n5u175_u5!}`
